@@ -144,3 +144,44 @@ option{
     display:flex;
     align-items: center;
 }
+.imagecontainer{
+    width:89%;
+    height:300px;
+    border:solid;
+    border-color:#073763;
+    border-width: 5px;
+    border-radius:15px;
+    justify-content: center;
+    margin:20px auto;
+    background-color: #3b3b3b;
+    display:flex;
+}
+.mainimages{
+    width:95%;
+    height:95%;
+    background-color:#2b2b2b;
+    margin:auto auto;
+    display:flex;
+    overflow-x:auto;
+    flex-wrap: nowrap;
+    border-radius: 15px;
+}
+.mainimages img{
+    object-fit: contain;
+    width:250px;
+    height:250px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 90, 90);
+  border-radius:10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius:10px;
+}

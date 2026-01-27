@@ -29,14 +29,6 @@ const rarityTypes = ['C','R','V','E','L','M','H'];
 async function loadData() {
     const response = await fetch('./dragonData.json');
     const dragonData = await response.json();
-    //const itemData = data.items;
-    //isolate dragon objects
-    //let dragonData = [];
-    //for(let i=0;i<itemData.length;i++){
-    //    if(itemData[i].group_type == 'DRAGON'){
-    //        dragonData.push(itemData[i]);
-    //    }
-    //}
     //adds rarity search filters
     const filtersBar = document.getElementById('searchFilter');
     rarityTypes.forEach((rarity,index)=>{
@@ -52,6 +44,9 @@ async function loadData() {
     //creates dragon boxes (elements, rarity, img, name)
     for (let i = dragonData.length-1; i > 0; i--) {
         let element = document.createElement('div');
+        element.addEventListener("click",()=>{
+            window.location.href = `dragon.html?id=${dragonData[i].id}`;
+        });
         element.className = "element";
         let dragonImage = document.createElement('div');
         dragonImage.className = "dragonImage";
