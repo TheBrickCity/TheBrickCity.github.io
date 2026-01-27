@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "DCFont";
+    src: url("dcfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
 *{
     margin:0;
     padding:0;
@@ -8,6 +14,10 @@ html, body {
 }
 body{
     background-color: #222222;
+}
+a:link, a:visited, a:hover, a:active {
+  color: white;
+  text-decoration: none;
 }
 .container{
     /*background-color: teal;*/
@@ -48,7 +58,7 @@ body{
 .rarityImage{
     width:45px;
     height:40px;
-    margin:auto;
+    margin:auto auto;
     background-repeat: no-repeat;
     background-size:45px 40px;
 }
@@ -114,7 +124,6 @@ body{
     background-position: center center;
     background-color:  transparent;
     background-repeat: no-repeat;
-    /*background-image: url(Static_Images/el-uk.png);*/
     background-size: 28px 39.2px;
 }
 option{
@@ -130,7 +139,7 @@ option{
 }
 .navbar{
     height:50px;
-    width:100%;
+    width:99%;
     background-color: #3b3b3b;
     position:sticky;
     top: 0;
@@ -143,6 +152,8 @@ option{
     border-bottom-right-radius: 20px;
     display:flex;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 .imagecontainer{
     width:89%;
@@ -170,6 +181,34 @@ option{
     object-fit: contain;
     width:250px;
     height:250px;
+    margin:auto auto;
+}
+.nameplate{
+    /*width:95%;*/
+    width: fit-content;
+    padding-left:10px;
+    padding-right: 10px;
+    height:50px;
+    border:solid;
+    border-color:#073763;
+    border-width: 5px;
+    border-radius:15px;
+    justify-content: center;
+    margin:20px auto;
+    background-color: #3b3b3b;
+    display:flex;
+    align-items:center;
+}
+nameitem{
+    margin:auto auto;
+}
+.elementImageFilter{
+    width:28px;
+    height:39.2px;
+    background-size: 28px 39.2px; 
+    background-repeat:no-repeat;
+    margin-left:10px;
+    margin-right:10px;
 }
 ::-webkit-scrollbar {
   width: 10px;
