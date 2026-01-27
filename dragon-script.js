@@ -29,6 +29,17 @@ async function loadData(){
     for(let i=0;i<4;i++){
         let image = document.createElement("img");
         image.src = `http://dci-static-s1.socialpointgames.com/static/dragoncity/mobile/ui/dragons/ui_${currDragon.img_name_android}_${i}@2x.png`;
+        image.addEventListener("error", () => {
+          image.remove();
+        });
+        mainImgHolder.append(image);
+    }
+    for(let i=1;i<5;i++){
+        let image = document.createElement("img");
+        image.src = `http://dci-static-s1.socialpointgames.com/static/dragoncity/mobile/ui/dragons/ui_${currDragon.img_name_android}_skin${i}_3@2x.png`;
+        image.addEventListener("error", () => {
+          image.remove();
+        });
         mainImgHolder.append(image);
     }
     for(let h = 0;h<4;h++){
