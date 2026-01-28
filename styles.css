@@ -211,6 +211,30 @@ option{
     margin-left:10px;
     margin-right:10px;
 }
+.attackelementcontainer{
+    width:100%;
+    height:fit-content;
+    display:flex;
+    justify-content: center;
+}
+.attackelement{
+    width:45%;
+    height:250px;
+    background-color: #3b3b3b;
+    margin:10px;
+    border-radius: 15px;
+    border:solid;
+    border-color:#073763;
+    justify-content: center;
+    align-content: center;
+}
+.attack{
+    width:90%;
+    height:50px;
+    margin:10px auto;
+    border-radius: 10px;
+    background-color: #1b1b1b;
+}
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
