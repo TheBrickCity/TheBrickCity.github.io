@@ -14,9 +14,13 @@ async function loadData(){
     console.log(dragonsID);
     const response = await fetch('./dragonData.json');
     const dragonData = await response.json();
-    const responseA = await fetch('./skillData.json');
-    const skillData = await responseA.json();
-    const attackData = skillData.attacks;
+    const responseA = await fetch('./attackData.json');
+    const attackDataTemp = await responseA.json();
+    const attackData = attackDataTemp.attacks;
+    const skillData = attackDataTemp.skills;
+    const responseL = await fetch("http://sp-translations.socialpointgames.com/deploy/dc/ios/prod/dc_ios_en_prod_wetd46pWuR8J5CmS.json");
+    const local = await responseL.json();
+    console.log(skillData);
     const currDragon = dragonData.find(dragon => dragon.id === dragonsID);
     console.log(currDragon);
     let rarityImage = document.createElement('div');
@@ -77,6 +81,12 @@ async function loadData(){
         attackName.classList.add("attackName");
         attackName.textContent = attackObjects[count].name;
         attackName.style.color = "white";
+        if(attackObjects[count].skill_id !== undefined){
+            let skill = skillData.find(skill => skill.id === attackObjects[count].skill_id);
+            let skillName = local.find(object => object.hasOwnProperty(skill.tid_name));
+            console.log(skill);
+            attackName.textContent = skillName?.[skill.tid_name];
+        }
         attackBlocks[count].append(attackName);
     }
     for(let count = 0; count<attackObjects.length;count++){

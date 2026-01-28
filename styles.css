@@ -40,6 +40,7 @@ a:link, a:visited, a:hover, a:active {
     align-items:flex;
     justify-content: center;
     flex-wrap:wrap;
+    cursor: pointer;
 }
 .dragonImage{
     width:200px;
@@ -69,12 +70,16 @@ a:link, a:visited, a:hover, a:active {
     margin-right:10px;
     background-repeat: no-repeat;
     background-size:45px 40px;
+    cursor: pointer;
 }
 .dragonName{
     width:80%;
     background-color: #073763;
     border-radius:15px;
     margin:auto;
+    color:#D3D3D3;
+    font-family: "DCFont";
+    letter-spacing: 0.5px;
 }
 .nav{
     color:white;
@@ -230,7 +235,8 @@ option{
 }
 .attack, .attackt{
     width:90%;
-    height:50px;
+    height:fit-content;
+    min-height:50px;
     margin:10px auto;
     border-radius: 10px;
     background-color: #1b1b1b;
@@ -238,6 +244,8 @@ option{
 }
 .attackName{
     margin:auto auto;
+    font-family: "DCFont";
+    font-size:20px;
 }
 ::-webkit-scrollbar {
   width: 10px;
