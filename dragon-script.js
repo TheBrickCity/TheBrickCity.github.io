@@ -18,7 +18,7 @@ async function loadData(){
     const attackDataTemp = await responseA.json();
     const attackData = attackDataTemp.attacks;
     const skillData = attackDataTemp.skills;
-    const responseL = await fetch("http://sp-translations.socialpointgames.com/deploy/dc/ios/prod/dc_ios_en_prod_wetd46pWuR8J5CmS.json");
+    const responseL = await fetch("https://sp-translations.socialpointgames.com/deploy/dc/ios/prod/dc_ios_en_prod_wetd46pWuR8J5CmS.json");
     const local = await responseL.json();
     console.log(skillData);
     const currDragon = dragonData.find(dragon => dragon.id === dragonsID);
@@ -96,4 +96,5 @@ async function loadData(){
         attackNameT.style.color = "white";
         attackBlocksT[count].append(attackNameT);
     }
+
 }
