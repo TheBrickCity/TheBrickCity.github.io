@@ -69,4 +69,21 @@ async function loadData(){
         trainableAttackObjects.push(attackData.find(attack => attack.id === trainableAttackIds[k]));
     }
     console.log(trainableAttackObjects);
+    attackBlocks = document.getElementsByClassName("attack");
+    attackBlocksT = document.getElementsByClassName("attackt");
+    console.log(attackBlocks);
+    for(let count = 0; count<attackObjects.length;count++){
+        let attackName = document.createElement('div');
+        attackName.classList.add("attackName");
+        attackName.textContent = attackObjects[count].name;
+        attackName.style.color = "white";
+        attackBlocks[count].append(attackName);
+    }
+    for(let count = 0; count<attackObjects.length;count++){
+        let attackNameT = document.createElement('div');
+        attackNameT.classList.add("attackName");
+        attackNameT.textContent = trainableAttackObjects[count].name;
+        attackNameT.style.color = "white";
+        attackBlocksT[count].append(attackNameT);
+    }
 }

@@ -228,12 +228,16 @@ option{
     justify-content: center;
     align-content: center;
 }
-.attack{
+.attack, .attackt{
     width:90%;
     height:50px;
     margin:10px auto;
     border-radius: 10px;
     background-color: #1b1b1b;
+    display:flex;
+}
+.attackName{
+    margin:auto auto;
 }
 ::-webkit-scrollbar {
   width: 10px;
