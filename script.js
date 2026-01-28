@@ -29,6 +29,9 @@ const rarityTypes = ['C','R','V','E','L','M','H'];
 async function loadData() {
     const response = await fetch('./dragonData.json');
     const dragonData = await response.json();
+    const responset = await fetch('./data.json');
+    const datat = await responset.json();
+    console.log(datat.skills);
     //adds rarity search filters
     const filtersBar = document.getElementById('searchFilter');
     rarityTypes.forEach((rarity,index)=>{

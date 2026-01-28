@@ -14,6 +14,9 @@ async function loadData(){
     console.log(dragonsID);
     const response = await fetch('./dragonData.json');
     const dragonData = await response.json();
+    const responseA = await fetch('./skillData.json');
+    const skillData = await responseA.json();
+    const attackData = skillData.attacks;
     const currDragon = dragonData.find(dragon => dragon.id === dragonsID);
     console.log(currDragon);
     let rarityImage = document.createElement('div');
@@ -52,4 +55,18 @@ async function loadData(){
         }
         namePlate.append(elementImage);
     }
+    //use dragon object attack id to identify attack objects
+    const attackIds = currDragon.attacks;
+    let attackObjects = [];
+    for(let k=0;k<attackIds.length;k++){
+        attackObjects.push(attackData.find(attack => attack.id === attackIds[k]));
+    }
+    console.log(attackObjects);
+    //use dragon object trainable attack ids to identify attack objects
+    const trainableAttackIds = currDragon.trainable_attacks;
+    let trainableAttackObjects = [];
+    for(let k = 0;k<trainableAttackIds.length;k++){
+        trainableAttackObjects.push(attackData.find(attack => attack.id === trainableAttackIds[k]));
+    }
+    console.log(trainableAttackObjects);
 }

@@ -188,7 +188,7 @@ option{
     width: fit-content;
     padding-left:10px;
     padding-right: 10px;
-    height:50px;
+    height:fit-content;
     border:solid;
     border-color:#073763;
     border-width: 5px;
@@ -197,6 +197,7 @@ option{
     margin:20px auto;
     background-color: #3b3b3b;
     display:flex;
+    flex-wrap: wrap;
     align-items:center;
 }
 .nameitem{
