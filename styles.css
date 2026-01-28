@@ -199,7 +199,7 @@ option{
     display:flex;
     align-items:center;
 }
-nameitem{
+.nameitem{
     margin:auto auto;
 }
 .elementImageFilter{
