@@ -31,6 +31,7 @@ async function loadData(){
     name.classList.add("nameitem");
     name.style.fontSize = "40px";
     name.style.fontFamily = 'DCFont';
+    name.style.color = "#D3D3D3";
     namePlate.append(name);
     namePlate.append(rarityImage);
     for(let i=0;i<4;i++){
@@ -49,6 +50,8 @@ async function loadData(){
         });
         mainImgHolder.append(image);
     }
+    let elementImageContainer = document.createElement('div');
+    elementImageContainer.style.display = "flex";
     for(let h = 0;h<4;h++){
         let elementImage = document.createElement('div');
         elementImage.className = "elementImageFilter";
@@ -57,8 +60,9 @@ async function loadData(){
         } else{
             elementImage.style.backgroundImage = `url(Static_Images/el-uk.png)`;
         }
-        namePlate.append(elementImage);
+        elementImageContainer.append(elementImage);
     }
+    namePlate.append(elementImageContainer);
     //use dragon object attack id to identify attack objects
     const attackIds = currDragon.attacks;
     let attackObjects = [];
@@ -80,20 +84,54 @@ async function loadData(){
         let attackName = document.createElement('div');
         attackName.classList.add("attackName");
         attackName.textContent = attackObjects[count].name;
-        attackName.style.color = "white";
+        attackName.style.color = "#D3D3D3";
+        let attackElement = document.createElement('div');
+        attackElement.classList.add("attackElement");
+        attackElement.style.backgroundImage = `url(Static_Images/attack-elements/${attackObjects[count].element}.png)`;
+        let attackPower = document.createElement('div');
+        attackPower.classList.add("attackPower");
+        attackPower.textContent = `Attack Power: ${attackObjects[count].damage}`;
+        attackPower.style.color = "#D3D3D3";
         if(attackObjects[count].skill_id !== undefined){
             let skill = skillData.find(skill => skill.id === attackObjects[count].skill_id);
             let skillName = local.find(object => object.hasOwnProperty(skill.tid_name));
-            console.log(skill);
             attackName.textContent = skillName?.[skill.tid_name];
+            attackBlocks[count].style.border = "2px solid #fff3a0";
+            attackBlocks[count].style.textShadow = "0 1px 2px rgba(0,0,0,0.6)";
+            attackElement.style.position = "relative";
+            let skillBorder = document.createElement('div');
+            skillBorder.className = "skillBorder";
+            attackElement.append(skillBorder);
         }
+        attackBlocks[count].append(attackElement);
         attackBlocks[count].append(attackName);
+        attackBlocks[count].append(attackPower);
     }
     for(let count = 0; count<attackObjects.length;count++){
-        let attackNameT = document.createElement('div');
-        attackNameT.classList.add("attackName");
-        attackNameT.textContent = trainableAttackObjects[count].name;
-        attackNameT.style.color = "white";
-        attackBlocksT[count].append(attackNameT);
+        let attackName = document.createElement('div');
+        attackName.classList.add("attackName");
+        attackName.textContent = trainableAttackObjects[count].name;
+        attackName.style.color = "#D3D3D3";
+        let attackElement = document.createElement('div');
+        attackElement.classList.add("attackElement");
+        attackElement.style.backgroundImage = `url(Static_Images/attack-elements/${trainableAttackObjects[count].element}.png)`;
+        let attackPower = document.createElement('div');
+        attackPower.classList.add("attackPower");
+        attackPower.textContent = `Attack Power: ${trainableAttackObjects[count].damage}`;
+        attackPower.style.color = "#D3D3D3";
+        if(trainableAttackObjects[count].skill_id !== undefined){
+            let skill = skillData.find(skill => skill.id === trainableAttackObjects[count].skill_id);
+            let skillName = local.find(object => object.hasOwnProperty(skill.tid_name));
+            attackName.textContent = skillName?.[skill.tid_name];
+            attackBlocksT[count].style.border = "2px solid #fff3a0";
+            attackBlocksT[count].style.textShadow = "0 1px 2px rgba(0,0,0,0.6)";
+            attackElement.style.position = "relative";
+            let skillBorder = document.createElement('div');
+            skillBorder.className = "skillBorder";
+            attackElement.append(skillBorder);
+        }
+        attackBlocksT[count].append(attackElement);
+        attackBlocksT[count].append(attackName);
+        attackBlocksT[count].append(attackPower);
     }
 }
