@@ -8,17 +8,32 @@ const namePlate = document.getElementById("nameplate");
 
 window.onload  = onPageLoaded;
 
-function shrinkSkill(){
-    console.log();
+function shrinkSkill(skill, effectData, attackBlock, local, button, genInfo, effectContainer){
+    if (button) {
+      button.remove();
+    }
+    if(genInfo){
+        genInfo.remove();
+    }
+    if(effectContainer){
+        effectContainer.remove();
+    }
+    
+    let expandButton = document.createElement('div');
+    expandButton.classList.add('expandButton');
+    expandButton.addEventListener("click",()=>{
+        expandSkill(skill, effectData, attackBlock, local, expandButton);
+    });
+    attackBlock.append(expandButton);
 }
 
-function expandSkill(skill, effectData, attackBlock, local){
+function expandSkill(skill, effectData, attackBlock, local, button){
+    if (button) {
+      button.remove();
+    }
     let effectIds = skill.effects;
     let effectObjects = [];
     let skillDescription = local.find(object => object.hasOwnProperty(skill.tid_description));
-    //let skillName = local.find(object => object.hasOwnProperty(skill.tid_name));
-    //console.log(skill);
-    //attackName.textContent = skillName?.[skill.tid_name];
     effectIds.forEach((effectId)=>{
         effectObjects.push(effectData.find(effect => effect.id === effectId));
         console.log(effectData.find(effect => effect.id === effectId));
@@ -27,7 +42,35 @@ function expandSkill(skill, effectData, attackBlock, local){
     generalSkillInfo.classList.add('generalSkillInfo');
     generalSkillInfo.textContent = `Cooldown: ${skill.cooldown} turns\nDescription: ${skillDescription?.[skill.tid_description]}`;
     attackBlock.append(generalSkillInfo);
-    //attackBlock.style.height = "300px";
+    let effectContainer = document.createElement('div');
+    effectContainer.classList.add('effectContainer');
+    attackBlock.append(effectContainer);
+    let count = 0;
+    effectObjects.forEach((effect)=>{
+        count++;
+       let effectInfo  = document.createElement('div');
+        effectInfo.classList.add('effectInfo');
+        effectInfo.textContent = `Effect ${count}\n`;
+        effectInfo.textContent = effectInfo.textContent + `Attack Type: ${effect.effect_type}\n `;
+        effectInfo.textContent = effectInfo.textContent + `Attack Target: ${effect.target}\n `;
+        if(effect.parameters.multiplier){
+            effectInfo.textContent = effectInfo.textContent + `Multiplier: ${effect.parameters.multiplier}\n`;
+        }
+        if(effect.parameters.minHits){
+            effectInfo.textContent = effectInfo.textContent + `Hits Range: ${effect.parameters.minHits}-${effect.parameters.maxHits}\n`;
+        }
+        effectInfo.textContent = effectInfo.textContent + `Hit Chance: ${effect.hit_chance}`;
+        effectContainer.append(effectInfo);
+    });
+    if(count == 1){
+        effectContainer.style.justifyContent = "center";
+    }
+    let shrinkButton = document.createElement('div');
+    shrinkButton.classList.add('shrinkButton');
+    shrinkButton.addEventListener("click",()=>{
+        shrinkSkill(skill, effectData, attackBlock, local, shrinkButton, generalSkillInfo, effectContainer);
+    });
+    attackBlock.append(shrinkButton);
 }
 
 async function loadData(){
@@ -131,7 +174,7 @@ async function loadData(){
             expandButton.classList.add('expandButton');
             expandButton.addEventListener("click",()=>{
                 //replace with skill info additions here
-                expandSkill(skill, effectData, attackBlocks[count], local);
+                expandSkill(skill, effectData, attackBlocks[count], local, expandButton);
             });
             expandButtonOutside = expandButton;
         }
