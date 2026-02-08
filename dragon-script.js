@@ -8,6 +8,28 @@ const namePlate = document.getElementById("nameplate");
 
 window.onload  = onPageLoaded;
 
+function shrinkSkill(){
+    console.log();
+}
+
+function expandSkill(skill, effectData, attackBlock, local){
+    let effectIds = skill.effects;
+    let effectObjects = [];
+    let skillDescription = local.find(object => object.hasOwnProperty(skill.tid_description));
+    //let skillName = local.find(object => object.hasOwnProperty(skill.tid_name));
+    //console.log(skill);
+    //attackName.textContent = skillName?.[skill.tid_name];
+    effectIds.forEach((effectId)=>{
+        effectObjects.push(effectData.find(effect => effect.id === effectId));
+        console.log(effectData.find(effect => effect.id === effectId));
+    });
+    let generalSkillInfo = document.createElement('div');
+    generalSkillInfo.classList.add('generalSkillInfo');
+    generalSkillInfo.textContent = `Cooldown: ${skill.cooldown} turns\nDescription: ${skillDescription?.[skill.tid_description]}`;
+    attackBlock.append(generalSkillInfo);
+    //attackBlock.style.height = "300px";
+}
+
 async function loadData(){
     console.log(params.get('id'));
     let dragonsID = Number(params.get('id'));
@@ -18,9 +40,10 @@ async function loadData(){
     const attackDataTemp = await responseA.json();
     const attackData = attackDataTemp.attacks;
     const skillData = attackDataTemp.skills;
+    const effectData = attackDataTemp.effects;
     const responseL = await fetch('./local.json');
     const local = await responseL.json();
-    console.log(skillData);
+    console.log(effectData);
     const currDragon = dragonData.find(dragon => dragon.id === dragonsID);
     console.log(currDragon);
     let rarityImage = document.createElement('div');
@@ -92,9 +115,11 @@ async function loadData(){
         attackPower.classList.add("attackPower");
         attackPower.textContent = `Attack Power: ${attackObjects[count].damage}`;
         attackPower.style.color = "#D3D3D3";
+        let expandButtonOutside = undefined;
         if(attackObjects[count].skill_id !== undefined){
             let skill = skillData.find(skill => skill.id === attackObjects[count].skill_id);
             let skillName = local.find(object => object.hasOwnProperty(skill.tid_name));
+            console.log(skill);
             attackName.textContent = skillName?.[skill.tid_name];
             attackBlocks[count].style.border = "2px solid #fff3a0";
             attackBlocks[count].style.textShadow = "0 1px 2px rgba(0,0,0,0.6)";
@@ -102,10 +127,23 @@ async function loadData(){
             let skillBorder = document.createElement('div');
             skillBorder.className = "skillBorder";
             attackElement.append(skillBorder);
+            let expandButton = document.createElement('div');
+            expandButton.classList.add('expandButton');
+            expandButton.addEventListener("click",()=>{
+                //replace with skill info additions here
+                expandSkill(skill, effectData, attackBlocks[count], local);
+            });
+            expandButtonOutside = expandButton;
         }
         attackBlocks[count].append(attackElement);
         attackBlocks[count].append(attackName);
         attackBlocks[count].append(attackPower);
+        if(expandButtonOutside !== undefined){
+            let lineBreak = document.createElement('div');
+            lineBreak.classList.add('flexBreak');
+            attackBlocks[count].append(lineBreak);
+            attackBlocks[count].append(expandButtonOutside);
+        }
     }
     for(let count = 0; count<attackObjects.length;count++){
         let attackName = document.createElement('div');

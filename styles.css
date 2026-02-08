@@ -232,8 +232,8 @@ option{
     flex-wrap: wrap;
 }
 .attackelement{
-    width:45%;
-    height:250px;
+    width:35%;
+    height:fit-content;
     min-width:300px;
     background-color: #3b3b3b;
     margin:10px;
@@ -252,19 +252,25 @@ option{
     background-color: #1b1b1b;
     display:flex;
     align-items:flex-start;
+    flex-wrap: wrap;;
 }
 .attackName, .attackPower{
     /*margin:auto auto auto 10px;*/
-    margin:auto auto;
+    margin:10px auto auto auto;
     font-family: "DCFont";
     font-size:20px;
 }
+/*
+.attackName{
+    make position relative and then make the arrow absolute below it
+}
+*/
 .attackElement{
     width:30px;
     height:30px;
     background-size: 30px 30px;
     background-repeat: no-repeat;
-    margin:auto auto auto 20px;
+    margin:10px auto auto 20px;
 }
 .skillBorder{
     position: absolute;
@@ -277,6 +283,33 @@ option{
     background-size:85px 85px;
     background-repeat: no-repeat;
     z-index: 2;
+}
+.generalSkillInfo{
+    width:95%;
+    height: fit-content;
+    background-color: #2B2B2B;
+    color:#D3D3D3;
+    font-family: 'DCFont';
+    border-radius: 5px;
+    margin:auto auto 10px auto;
+    white-space: pre-line
+}
+.expandButton{
+    width:100px;
+    height:15px;
+    /*flex-basis: 40%;*/
+    margin-left:100px;
+    border-radius: 15px;
+    margin: auto auto 5px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 12px 9px;
+    background-image: url(expandButton.png);
+    background-color: #2b2b2b;
+}
+.flexBreak{
+    height:0px;
+    flex-basis: 100%;
 }
 ::-webkit-scrollbar {
   width: 10px;

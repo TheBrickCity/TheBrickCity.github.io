@@ -31,7 +31,7 @@ async function loadData() {
     const dragonData = await response.json();
     const responset = await fetch('./data.json');
     const datat = await responset.json();
-    console.log(datat.skills);
+    console.log(datat);
     //adds rarity search filters
     const filtersBar = document.getElementById('searchFilter');
     rarityTypes.forEach((rarity,index)=>{
@@ -43,7 +43,6 @@ async function loadData() {
         });
         filtersBar.append(rarityFilter); 
     });
-    console.log(dragonData);
     //creates dragon boxes (elements, rarity, img, name)
     for (let i = dragonData.length-1; i > 0; i--) {
         let element = document.createElement('div');
